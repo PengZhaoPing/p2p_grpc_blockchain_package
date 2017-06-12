@@ -129,7 +129,7 @@ def __tempSocket(nodePort):
     # 當被動接收新節點 會開Socket 以知道對方IP
     global tempPort
     while tempPort == 0:
-        port = random.randint(1024,65536)
+        port = PORT + 1
         sock = ""
         try:
             sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
