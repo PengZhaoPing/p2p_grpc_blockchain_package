@@ -1,0 +1,35 @@
+syntax= "proto2";
+
+service Discovery {
+    rpc ExchangeNode(Node) returns (Node);
+    rpc Hello(Message) returns (Message);
+}
+
+service Transaction{
+    rpc BlockBroadcast(Block) returns (Message);
+}
+
+service Synchronization{
+    rpc From(Message) returns (Block);
+    rpc To(Block) returns (Message);
+}
+
+
+message Block{
+    required uint64 height = 1;
+    required string ctime = 2;
+    required bytes value = 3;
+    required bytes previoushash = 4;
+    required bytes blockhash = 5;
+    required bytes nexthash = 6;
+}
+
+message Node{
+    required int32 number=1;
+    repeated bytes ipport=2;
+}
+
+message Message{
+    required bytes value =1;
+}
+
