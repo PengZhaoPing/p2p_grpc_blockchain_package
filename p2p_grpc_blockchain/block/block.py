@@ -221,7 +221,7 @@ class Chain:
                 
                 return format(int(int(Chain.getBlockFromHeight(start+100).pb2.difficulty,16)*(Fraction(timetotal)/6000)),'x')
             
-        return "ffff417574686f723a4c757273756e2c20e79ba7e7919ee5b1b1e69599e68e88"
+        return "417574686f723a4c757273756e2c20e79ba7e7919ee5b1b1e69599e68e88"
 
 
     @staticmethod
@@ -235,8 +235,10 @@ class Chain:
         
 
         
-
+        
         if Chain._blockFromHash.has_key(block.pb2.blockhash):
+            if not Chain._blockFromHeight.has_key(block.pb2.blockhash):
+                Chain._blockFromHeight[key] = block
             return "HAS_BLOCK"
 
         

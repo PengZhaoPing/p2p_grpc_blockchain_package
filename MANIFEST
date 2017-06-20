@@ -13,3 +13,5 @@ p2p_grpc_blockchain/proto/grpc_pb2.py
 p2p_grpc_blockchain/proto/grpc_pb2_grpc.py
 p2p_grpc_blockchain/synchronization/__init__.py
 p2p_grpc_blockchain/synchronization/synchronization.py
+p2p_grpc_blockchain/transaction/__init__.py
+p2p_grpc_blockchain/transaction/transaction.py

@@ -82,6 +82,6 @@ class Transaction():
         print ("=> unixtime:%s\tbody:%s" % (pb2tx.unixtime,pb2tx.body))
         tx=Transaction()
         tx.pb2=pb2tx
-        Transaction.Transactions[tx.pb2.txhash]=pb2tx
+        Transaction.Transactions[tx.pb2.txhash]=tx
     
 threading.Thread(target=Transaction.sync).start()
