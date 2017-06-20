@@ -19,58 +19,37 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='grpc.proto',
   package='',
   syntax='proto2',
-  serialized_pb=_b('\n\ngrpc.proto\"p\n\x05\x42lock\x12\x0e\n\x06height\x18\x01 \x02(\x04\x12\r\n\x05\x63time\x18\x02 \x02(\t\x12\r\n\x05value\x18\x03 \x02(\x0c\x12\x14\n\x0cprevioushash\x18\x04 \x02(\x0c\x12\x11\n\tblockhash\x18\x05 \x02(\x0c\x12\x10\n\x08nexthash\x18\x06 \x02(\x0c\"&\n\x04Node\x12\x0e\n\x06number\x18\x01 \x02(\x05\x12\x0e\n\x06ipport\x18\x02 \x03(\x0c\"\x18\n\x07Message\x12\r\n\x05value\x18\x01 \x02(\x0c\x32\x46\n\tDiscovery\x12\x1c\n\x0c\x45xchangeNode\x12\x05.Node\x1a\x05.Node\x12\x1b\n\x05Hello\x12\x08.Message\x1a\x08.Message21\n\x0bTransaction\x12\"\n\x0e\x42lockBroadcast\x12\x06.Block\x1a\x08.Message2C\n\x0fSynchronization\x12\x18\n\x04\x46rom\x12\x08.Message\x1a\x06.Block\x12\x16\n\x02To\x12\x06.Block\x1a\x08.Message')
+  serialized_pb=_b('\n\ngrpc.proto\"=\n\x0bTransaction\x12\x10\n\x08unixtime\x18\x01 \x02(\x0c\x12\x0c\n\x04\x62ody\x18\x02 \x02(\x0c\x12\x0e\n\x06txhash\x18\x03 \x02(\x0c\"\x87\x01\n\x05\x42lock\x12\x0e\n\x06height\x18\x01 \x02(\x04\x12\x10\n\x08unixtime\x18\x02 \x02(\x0c\x12\x14\n\x0cprevioushash\x18\x03 \x02(\x0c\x12\x11\n\tblockhash\x18\x04 \x02(\x0c\x12\x12\n\ndifficulty\x18\x05 \x02(\x0c\x12\x0e\n\x06\x61nswer\x18\x06 \x02(\x0c\x12\x0f\n\x07txshash\x18\x07 \x03(\x0c\"&\n\x04Node\x12\x0e\n\x06number\x18\x01 \x02(\x05\x12\x0e\n\x06ipport\x18\x02 \x03(\x0c\"\x18\n\x07Message\x12\r\n\x05value\x18\x01 \x02(\x0c\x32\x46\n\tDiscovery\x12\x1c\n\x0c\x45xchangeNode\x12\x05.Node\x1a\x05.Node\x12\x1b\n\x05Hello\x12\x08.Message\x1a\x08.Message2\xc2\x01\n\x0fSynchronization\x12\x1d\n\tBlockFrom\x12\x08.Message\x1a\x06.Block\x12\x1b\n\x07\x42lockTo\x12\x06.Block\x1a\x08.Message\x12\x1f\n\rExchangeBlock\x12\x06.Block\x1a\x06.Block\x12\'\n\rTransactionTo\x12\x0c.Transaction\x1a\x08.Message\x12)\n\x0fTransactionFrom\x12\x08.Message\x1a\x0c.Transaction')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
 
-_BLOCK = _descriptor.Descriptor(
-  name='Block',
-  full_name='Block',
+_TRANSACTION = _descriptor.Descriptor(
+  name='Transaction',
+  full_name='Transaction',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='height', full_name='Block.height', index=0,
-      number=1, type=4, cpp_type=4, label=2,
-      has_default_value=False, default_value=0,
+      name='unixtime', full_name='Transaction.unixtime', index=0,
+      number=1, type=12, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='ctime', full_name='Block.ctime', index=1,
-      number=2, type=9, cpp_type=9, label=2,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='body', full_name='Transaction.body', index=1,
+      number=2, type=12, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='value', full_name='Block.value', index=2,
+      name='txhash', full_name='Transaction.txhash', index=2,
       number=3, type=12, cpp_type=9, label=2,
-      has_default_value=False, default_value=_b(""),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='previoushash', full_name='Block.previoushash', index=3,
-      number=4, type=12, cpp_type=9, label=2,
-      has_default_value=False, default_value=_b(""),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='blockhash', full_name='Block.blockhash', index=4,
-      number=5, type=12, cpp_type=9, label=2,
-      has_default_value=False, default_value=_b(""),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='nexthash', full_name='Block.nexthash', index=5,
-      number=6, type=12, cpp_type=9, label=2,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -88,7 +67,80 @@ _BLOCK = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=14,
-  serialized_end=126,
+  serialized_end=75,
+)
+
+
+_BLOCK = _descriptor.Descriptor(
+  name='Block',
+  full_name='Block',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='height', full_name='Block.height', index=0,
+      number=1, type=4, cpp_type=4, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='unixtime', full_name='Block.unixtime', index=1,
+      number=2, type=12, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='previoushash', full_name='Block.previoushash', index=2,
+      number=3, type=12, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='blockhash', full_name='Block.blockhash', index=3,
+      number=4, type=12, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='difficulty', full_name='Block.difficulty', index=4,
+      number=5, type=12, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='answer', full_name='Block.answer', index=5,
+      number=6, type=12, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='txshash', full_name='Block.txshash', index=6,
+      number=7, type=12, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=78,
+  serialized_end=213,
 )
 
 
@@ -125,8 +177,8 @@ _NODE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=128,
-  serialized_end=166,
+  serialized_start=215,
+  serialized_end=253,
 )
 
 
@@ -156,13 +208,21 @@ _MESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=168,
-  serialized_end=192,
+  serialized_start=255,
+  serialized_end=279,
 )
 
+DESCRIPTOR.message_types_by_name['Transaction'] = _TRANSACTION
 DESCRIPTOR.message_types_by_name['Block'] = _BLOCK
 DESCRIPTOR.message_types_by_name['Node'] = _NODE
 DESCRIPTOR.message_types_by_name['Message'] = _MESSAGE
+
+Transaction = _reflection.GeneratedProtocolMessageType('Transaction', (_message.Message,), dict(
+  DESCRIPTOR = _TRANSACTION,
+  __module__ = 'grpc_pb2'
+  # @@protoc_insertion_point(class_scope:Transaction)
+  ))
+_sym_db.RegisterMessage(Transaction)
 
 Block = _reflection.GeneratedProtocolMessageType('Block', (_message.Message,), dict(
   DESCRIPTOR = _BLOCK,
@@ -247,42 +307,6 @@ try:
     server.add_generic_rpc_handlers((generic_handler,))
 
 
-  class TransactionStub(object):
-
-    def __init__(self, channel):
-      """Constructor.
-
-      Args:
-        channel: A grpc.Channel.
-      """
-      self.BlockBroadcast = channel.unary_unary(
-          '/Transaction/BlockBroadcast',
-          request_serializer=Block.SerializeToString,
-          response_deserializer=Message.FromString,
-          )
-
-
-  class TransactionServicer(object):
-
-    def BlockBroadcast(self, request, context):
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-
-  def add_TransactionServicer_to_server(servicer, server):
-    rpc_method_handlers = {
-        'BlockBroadcast': grpc.unary_unary_rpc_method_handler(
-            servicer.BlockBroadcast,
-            request_deserializer=Block.FromString,
-            response_serializer=Message.SerializeToString,
-        ),
-    }
-    generic_handler = grpc.method_handlers_generic_handler(
-        'Transaction', rpc_method_handlers)
-    server.add_generic_rpc_handlers((generic_handler,))
-
-
   class SynchronizationStub(object):
 
     def __init__(self, channel):
@@ -291,26 +315,56 @@ try:
       Args:
         channel: A grpc.Channel.
       """
-      self.From = channel.unary_unary(
-          '/Synchronization/From',
+      self.BlockFrom = channel.unary_unary(
+          '/Synchronization/BlockFrom',
           request_serializer=Message.SerializeToString,
           response_deserializer=Block.FromString,
           )
-      self.To = channel.unary_unary(
-          '/Synchronization/To',
+      self.BlockTo = channel.unary_unary(
+          '/Synchronization/BlockTo',
           request_serializer=Block.SerializeToString,
           response_deserializer=Message.FromString,
+          )
+      self.ExchangeBlock = channel.unary_unary(
+          '/Synchronization/ExchangeBlock',
+          request_serializer=Block.SerializeToString,
+          response_deserializer=Block.FromString,
+          )
+      self.TransactionTo = channel.unary_unary(
+          '/Synchronization/TransactionTo',
+          request_serializer=Transaction.SerializeToString,
+          response_deserializer=Message.FromString,
+          )
+      self.TransactionFrom = channel.unary_unary(
+          '/Synchronization/TransactionFrom',
+          request_serializer=Message.SerializeToString,
+          response_deserializer=Transaction.FromString,
           )
 
 
   class SynchronizationServicer(object):
 
-    def From(self, request, context):
+    def BlockFrom(self, request, context):
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
 
-    def To(self, request, context):
+    def BlockTo(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def ExchangeBlock(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def TransactionTo(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def TransactionFrom(self, request, context):
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
@@ -318,15 +372,30 @@ try:
 
   def add_SynchronizationServicer_to_server(servicer, server):
     rpc_method_handlers = {
-        'From': grpc.unary_unary_rpc_method_handler(
-            servicer.From,
+        'BlockFrom': grpc.unary_unary_rpc_method_handler(
+            servicer.BlockFrom,
             request_deserializer=Message.FromString,
             response_serializer=Block.SerializeToString,
         ),
-        'To': grpc.unary_unary_rpc_method_handler(
-            servicer.To,
+        'BlockTo': grpc.unary_unary_rpc_method_handler(
+            servicer.BlockTo,
             request_deserializer=Block.FromString,
             response_serializer=Message.SerializeToString,
+        ),
+        'ExchangeBlock': grpc.unary_unary_rpc_method_handler(
+            servicer.ExchangeBlock,
+            request_deserializer=Block.FromString,
+            response_serializer=Block.SerializeToString,
+        ),
+        'TransactionTo': grpc.unary_unary_rpc_method_handler(
+            servicer.TransactionTo,
+            request_deserializer=Transaction.FromString,
+            response_serializer=Message.SerializeToString,
+        ),
+        'TransactionFrom': grpc.unary_unary_rpc_method_handler(
+            servicer.TransactionFrom,
+            request_deserializer=Message.FromString,
+            response_serializer=Transaction.SerializeToString,
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -404,74 +473,21 @@ try:
     return beta_implementations.dynamic_stub(channel, 'Discovery', cardinalities, options=stub_options)
 
 
-  class BetaTransactionServicer(object):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This class was generated
-    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    def BlockBroadcast(self, request, context):
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-
-
-  class BetaTransactionStub(object):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This class was generated
-    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    def BlockBroadcast(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      raise NotImplementedError()
-    BlockBroadcast.future = None
-
-
-  def beta_create_Transaction_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This function was
-    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
-    request_deserializers = {
-      ('Transaction', 'BlockBroadcast'): Block.FromString,
-    }
-    response_serializers = {
-      ('Transaction', 'BlockBroadcast'): Message.SerializeToString,
-    }
-    method_implementations = {
-      ('Transaction', 'BlockBroadcast'): face_utilities.unary_unary_inline(servicer.BlockBroadcast),
-    }
-    server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
-    return beta_implementations.server(method_implementations, options=server_options)
-
-
-  def beta_create_Transaction_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This function was
-    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
-    request_serializers = {
-      ('Transaction', 'BlockBroadcast'): Block.SerializeToString,
-    }
-    response_deserializers = {
-      ('Transaction', 'BlockBroadcast'): Message.FromString,
-    }
-    cardinalities = {
-      'BlockBroadcast': cardinality.Cardinality.UNARY_UNARY,
-    }
-    stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
-    return beta_implementations.dynamic_stub(channel, 'Transaction', cardinalities, options=stub_options)
-
-
   class BetaSynchronizationServicer(object):
     """The Beta API is deprecated for 0.15.0 and later.
 
     It is recommended to use the GA API (classes and functions in this
     file not marked beta) for all further purposes. This class was generated
     only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    def From(self, request, context):
+    def BlockFrom(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def To(self, request, context):
+    def BlockTo(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def ExchangeBlock(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def TransactionTo(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def TransactionFrom(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
 
@@ -481,12 +497,21 @@ try:
     It is recommended to use the GA API (classes and functions in this
     file not marked beta) for all further purposes. This class was generated
     only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    def From(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+    def BlockFrom(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       raise NotImplementedError()
-    From.future = None
-    def To(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+    BlockFrom.future = None
+    def BlockTo(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       raise NotImplementedError()
-    To.future = None
+    BlockTo.future = None
+    def ExchangeBlock(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    ExchangeBlock.future = None
+    def TransactionTo(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    TransactionTo.future = None
+    def TransactionFrom(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    TransactionFrom.future = None
 
 
   def beta_create_Synchronization_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
@@ -496,16 +521,25 @@ try:
     file not marked beta) for all further purposes. This function was
     generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
     request_deserializers = {
-      ('Synchronization', 'From'): Message.FromString,
-      ('Synchronization', 'To'): Block.FromString,
+      ('Synchronization', 'BlockFrom'): Message.FromString,
+      ('Synchronization', 'BlockTo'): Block.FromString,
+      ('Synchronization', 'ExchangeBlock'): Block.FromString,
+      ('Synchronization', 'TransactionFrom'): Message.FromString,
+      ('Synchronization', 'TransactionTo'): Transaction.FromString,
     }
     response_serializers = {
-      ('Synchronization', 'From'): Block.SerializeToString,
-      ('Synchronization', 'To'): Message.SerializeToString,
+      ('Synchronization', 'BlockFrom'): Block.SerializeToString,
+      ('Synchronization', 'BlockTo'): Message.SerializeToString,
+      ('Synchronization', 'ExchangeBlock'): Block.SerializeToString,
+      ('Synchronization', 'TransactionFrom'): Transaction.SerializeToString,
+      ('Synchronization', 'TransactionTo'): Message.SerializeToString,
     }
     method_implementations = {
-      ('Synchronization', 'From'): face_utilities.unary_unary_inline(servicer.From),
-      ('Synchronization', 'To'): face_utilities.unary_unary_inline(servicer.To),
+      ('Synchronization', 'BlockFrom'): face_utilities.unary_unary_inline(servicer.BlockFrom),
+      ('Synchronization', 'BlockTo'): face_utilities.unary_unary_inline(servicer.BlockTo),
+      ('Synchronization', 'ExchangeBlock'): face_utilities.unary_unary_inline(servicer.ExchangeBlock),
+      ('Synchronization', 'TransactionFrom'): face_utilities.unary_unary_inline(servicer.TransactionFrom),
+      ('Synchronization', 'TransactionTo'): face_utilities.unary_unary_inline(servicer.TransactionTo),
     }
     server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
     return beta_implementations.server(method_implementations, options=server_options)
@@ -518,16 +552,25 @@ try:
     file not marked beta) for all further purposes. This function was
     generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
     request_serializers = {
-      ('Synchronization', 'From'): Message.SerializeToString,
-      ('Synchronization', 'To'): Block.SerializeToString,
+      ('Synchronization', 'BlockFrom'): Message.SerializeToString,
+      ('Synchronization', 'BlockTo'): Block.SerializeToString,
+      ('Synchronization', 'ExchangeBlock'): Block.SerializeToString,
+      ('Synchronization', 'TransactionFrom'): Message.SerializeToString,
+      ('Synchronization', 'TransactionTo'): Transaction.SerializeToString,
     }
     response_deserializers = {
-      ('Synchronization', 'From'): Block.FromString,
-      ('Synchronization', 'To'): Message.FromString,
+      ('Synchronization', 'BlockFrom'): Block.FromString,
+      ('Synchronization', 'BlockTo'): Message.FromString,
+      ('Synchronization', 'ExchangeBlock'): Block.FromString,
+      ('Synchronization', 'TransactionFrom'): Transaction.FromString,
+      ('Synchronization', 'TransactionTo'): Message.FromString,
     }
     cardinalities = {
-      'From': cardinality.Cardinality.UNARY_UNARY,
-      'To': cardinality.Cardinality.UNARY_UNARY,
+      'BlockFrom': cardinality.Cardinality.UNARY_UNARY,
+      'BlockTo': cardinality.Cardinality.UNARY_UNARY,
+      'ExchangeBlock': cardinality.Cardinality.UNARY_UNARY,
+      'TransactionFrom': cardinality.Cardinality.UNARY_UNARY,
+      'TransactionTo': cardinality.Cardinality.UNARY_UNARY,
     }
     stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
     return beta_implementations.dynamic_stub(channel, 'Synchronization', cardinalities, options=stub_options)

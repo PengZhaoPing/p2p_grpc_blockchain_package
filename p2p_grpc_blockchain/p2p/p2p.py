@@ -9,6 +9,7 @@ from concurrent import futures
 import grpc
 from p2p_grpc_blockchain.block import block
 from p2p_grpc_blockchain.synchronization import synchronization
+from p2p_grpc_blockchain.transaction import transaction
 from p2p_grpc_blockchain.proto import grpc_pb2
 from p2p_grpc_blockchain.proto import grpc_pb2_grpc
 from p2p_grpc_blockchain.enum.enum import *
@@ -29,16 +30,16 @@ class Node:
                 print( "=> get new Node %s" % target )
                 Node.__Nodes.add(target)
 
-                def linkBroadcast():
-                    global linkBroadcastFlag
-                    if linkBroadcastFlag == False:
-                        linkBroadcastFlag = True
-                        while linkBroadcastFlag:
-                            time.sleep(random.randint(1,60));
-                            linkBroadcastBlock = block.Chain.getBlockFromHeight(block.Chain.getHeight())
-                            print("<= [broadcast Block]:%s" % linkBroadcastBlock.pb2.blockhash)
-                            Node.broadcast(SERVICE*TRANSACTION+BLOCKBROADCAST,linkBroadcastBlock.pb2)
-                threading.Thread(target=linkBroadcast).start()
+                # def linkBroadcast():
+                #     global linkBroadcastFlag
+                #     if linkBroadcastFlag == False:
+                #         linkBroadcastFlag = True
+                #         while linkBroadcastFlag:
+                #             time.sleep(random.randint(1,60));
+                #             linkBroadcastBlock = block.Chain.getBlockFromHeight(block.Chain.getHeight())
+                #             print("<= [broadcast Block]:%s" % linkBroadcastBlock.pb2.blockhash)
+                #             Node.broadcast(SERVICE*TRANSACTION+BLOCKBROADCAST,linkBroadcastBlock.pb2)
+                # threading.Thread(target=linkBroadcast).start()
 
         elif type(target) == list:
             for i in target:
@@ -70,7 +71,7 @@ class Node:
             for i in nodes:
                 Node.send(i,task,message)
         except Exception as e :
-            pass
+            print (e)
 
     @staticmethod
     def passBroadcast(node,task,message):
@@ -96,13 +97,11 @@ class Node:
                     for node in response.ipport :
                         Node.__Nodes.add(node)
 
-            elif taskType == TRANSACTION:
-                stub = grpc_pb2_grpc.TransactionStub(channel)
-                block.Task(node,stub,task,message)
+
             
             elif taskType == SYNCHRONIZATION:
                 stub = grpc_pb2_grpc.SynchronizationStub(channel)
-                return synchronization.Task(stub,task,message)
+                synchronization.Task(stub,task,message)
 
         except Exception as e :
             Node.delNode(node)
@@ -129,7 +128,7 @@ def __tempSocket(nodePort):
     # 當被動接收新節點 會開Socket 以知道對方IP
     global tempPort
     while tempPort == 0:
-        port = PORT + 1
+        port = int(PORT) + 1
         sock = ""
         try:
             sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -198,7 +197,6 @@ def __grpcNetworkStart():
     # grpc server
     server = grpc.server(futures.ThreadPoolExecutor(max_workers = 10))
     grpc_pb2_grpc.add_DiscoveryServicer_to_server(Discovery(),server)
-    grpc_pb2_grpc.add_TransactionServicer_to_server(block.Transaction(),server)
     # grpc_pb2_grpc.add_ConsensusServicer_to_server(Discovery(),server)
     grpc_pb2_grpc.add_SynchronizationServicer_to_server(synchronization.Synchronization(),server)
 

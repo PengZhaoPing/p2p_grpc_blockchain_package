@@ -5,23 +5,27 @@ service Discovery {
     rpc Hello(Message) returns (Message);
 }
 
-service Transaction{
-    rpc BlockBroadcast(Block) returns (Message);
-}
-
 service Synchronization{
-    rpc From(Message) returns (Block);
-    rpc To(Block) returns (Message);
+    rpc BlockFrom(Message) returns (Block);
+    rpc BlockTo(Block) returns (Message);
+    rpc ExchangeBlock(Block) returns (Block);
+    rpc TransactionTo(Transaction) returns (Message);
+    rpc TransactionFrom(Message) returns (Transaction);
 }
 
-
+message Transaction{
+    required bytes unixtime = 1;
+    required bytes body = 2;
+    required bytes txhash = 3;
+}
 message Block{
     required uint64 height = 1;
-    required string ctime = 2;
-    required bytes value = 3;
-    required bytes previoushash = 4;
-    required bytes blockhash = 5;
-    required bytes nexthash = 6;
+    required bytes unixtime = 2;
+    required bytes previoushash = 3;
+    required bytes blockhash = 4;
+    required bytes difficulty = 5;
+    required bytes answer = 6;
+    repeated bytes txshash = 7;
 }
 
 message Node{

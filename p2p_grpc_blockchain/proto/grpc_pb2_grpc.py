@@ -55,42 +55,6 @@ def add_DiscoveryServicer_to_server(servicer, server):
   server.add_generic_rpc_handlers((generic_handler,))
 
 
-class TransactionStub(object):
-
-  def __init__(self, channel):
-    """Constructor.
-
-    Args:
-      channel: A grpc.Channel.
-    """
-    self.BlockBroadcast = channel.unary_unary(
-        '/Transaction/BlockBroadcast',
-        request_serializer=grpc__pb2.Block.SerializeToString,
-        response_deserializer=grpc__pb2.Message.FromString,
-        )
-
-
-class TransactionServicer(object):
-
-  def BlockBroadcast(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-
-def add_TransactionServicer_to_server(servicer, server):
-  rpc_method_handlers = {
-      'BlockBroadcast': grpc.unary_unary_rpc_method_handler(
-          servicer.BlockBroadcast,
-          request_deserializer=grpc__pb2.Block.FromString,
-          response_serializer=grpc__pb2.Message.SerializeToString,
-      ),
-  }
-  generic_handler = grpc.method_handlers_generic_handler(
-      'Transaction', rpc_method_handlers)
-  server.add_generic_rpc_handlers((generic_handler,))
-
-
 class SynchronizationStub(object):
 
   def __init__(self, channel):
@@ -99,26 +63,56 @@ class SynchronizationStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.From = channel.unary_unary(
-        '/Synchronization/From',
+    self.BlockFrom = channel.unary_unary(
+        '/Synchronization/BlockFrom',
         request_serializer=grpc__pb2.Message.SerializeToString,
         response_deserializer=grpc__pb2.Block.FromString,
         )
-    self.To = channel.unary_unary(
-        '/Synchronization/To',
+    self.BlockTo = channel.unary_unary(
+        '/Synchronization/BlockTo',
         request_serializer=grpc__pb2.Block.SerializeToString,
         response_deserializer=grpc__pb2.Message.FromString,
+        )
+    self.ExchangeBlock = channel.unary_unary(
+        '/Synchronization/ExchangeBlock',
+        request_serializer=grpc__pb2.Block.SerializeToString,
+        response_deserializer=grpc__pb2.Block.FromString,
+        )
+    self.TransactionTo = channel.unary_unary(
+        '/Synchronization/TransactionTo',
+        request_serializer=grpc__pb2.Transaction.SerializeToString,
+        response_deserializer=grpc__pb2.Message.FromString,
+        )
+    self.TransactionFrom = channel.unary_unary(
+        '/Synchronization/TransactionFrom',
+        request_serializer=grpc__pb2.Message.SerializeToString,
+        response_deserializer=grpc__pb2.Transaction.FromString,
         )
 
 
 class SynchronizationServicer(object):
 
-  def From(self, request, context):
+  def BlockFrom(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def To(self, request, context):
+  def BlockTo(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ExchangeBlock(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def TransactionTo(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def TransactionFrom(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -126,15 +120,30 @@ class SynchronizationServicer(object):
 
 def add_SynchronizationServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'From': grpc.unary_unary_rpc_method_handler(
-          servicer.From,
+      'BlockFrom': grpc.unary_unary_rpc_method_handler(
+          servicer.BlockFrom,
           request_deserializer=grpc__pb2.Message.FromString,
           response_serializer=grpc__pb2.Block.SerializeToString,
       ),
-      'To': grpc.unary_unary_rpc_method_handler(
-          servicer.To,
+      'BlockTo': grpc.unary_unary_rpc_method_handler(
+          servicer.BlockTo,
           request_deserializer=grpc__pb2.Block.FromString,
           response_serializer=grpc__pb2.Message.SerializeToString,
+      ),
+      'ExchangeBlock': grpc.unary_unary_rpc_method_handler(
+          servicer.ExchangeBlock,
+          request_deserializer=grpc__pb2.Block.FromString,
+          response_serializer=grpc__pb2.Block.SerializeToString,
+      ),
+      'TransactionTo': grpc.unary_unary_rpc_method_handler(
+          servicer.TransactionTo,
+          request_deserializer=grpc__pb2.Transaction.FromString,
+          response_serializer=grpc__pb2.Message.SerializeToString,
+      ),
+      'TransactionFrom': grpc.unary_unary_rpc_method_handler(
+          servicer.TransactionFrom,
+          request_deserializer=grpc__pb2.Message.FromString,
+          response_serializer=grpc__pb2.Transaction.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
