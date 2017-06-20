@@ -282,8 +282,12 @@ class Chain:
     @staticmethod
     def showtolist():
         result = []
-        for block in Chain._blockFromHeight:
-            result.append(Chain._blockFromHeight[block])
+        block=Chain.getBlockFromHeight(Chain.getHeight())
+        result.append(block)
+        while Chain._blockFromHash.has_key(block.pb2.previoushash):
+            block=Chain.getBlockFromHash(block.pb2.previoushash)
+            result.append(block)
+        result.reverse()
         return result
     
     @staticmethod
