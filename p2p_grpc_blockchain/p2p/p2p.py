@@ -204,6 +204,12 @@ def __grpcNetworkStart():
     server.start()
 
     threading.Thread(target = exchangeLoop).start()
+
+    try:
+        ROOT_TARGET = os.environ["ROOT_TARGET"]
+    except:
+        ROOT_TARGET = "35.189.188.46:8001"
+    grpcJoinNode(target)
     while True:
         time.sleep(1)
 
