@@ -30,16 +30,15 @@ class Node:
                 print( "=> get new Node %s" % target )
                 Node.__Nodes.add(target)
 
-                # def linkBroadcast():
-                #     global linkBroadcastFlag
-                #     if linkBroadcastFlag == False:
-                #         linkBroadcastFlag = True
-                #         while linkBroadcastFlag:
-                #             time.sleep(random.randint(1,60));
-                #             linkBroadcastBlock = block.Chain.getBlockFromHeight(block.Chain.getHeight())
-                #             print("<= [broadcast Block]:%s" % linkBroadcastBlock.pb2.blockhash)
-                #             Node.broadcast(SERVICE*TRANSACTION+BLOCKBROADCAST,linkBroadcastBlock.pb2)
-                # threading.Thread(target=linkBroadcast).start()
+                def linkBroadcast():
+                    global linkBroadcastFlag
+                    if linkBroadcastFlag == False:
+                        linkBroadcastFlag = True
+                        while linkBroadcastFlag:
+                            time.sleep(random.randint(1,60));
+                            linkBroadcastBlock = block.Chain.getBlockFromHeight(block.Chain.getHeight())
+                            linkBroadcastBlock.ExchangeBlock()
+                threading.Thread(target=linkBroadcast).start()
 
         elif type(target) == list:
             for i in target:
@@ -204,6 +203,13 @@ def __grpcNetworkStart():
     server.start()
 
     threading.Thread(target = exchangeLoop).start()
+
+    try:
+        ROOT_TARGET = os.environ["ROOT_TARGET"]
+    except:
+        ROOT_TARGET = "35.189.188.46:8001"
+    
+    threading.Thread(target = grpcJoinNode ,args=(ROOT_TARGET,)).start()
     while True:
         time.sleep(1)
 
