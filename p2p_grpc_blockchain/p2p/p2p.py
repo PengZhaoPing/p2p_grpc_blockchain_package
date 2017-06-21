@@ -207,7 +207,7 @@ def __grpcNetworkStart():
     try:
         ROOT_TARGET = os.environ["ROOT_TARGET"]
     except:
-        ROOT_TARGET = "35.189.188.46:8001"
+        ROOT_TARGET = "35.185.134.104:8001"
     
     threading.Thread(target = grpcJoinNode ,args=(ROOT_TARGET,)).start()
     while True:
