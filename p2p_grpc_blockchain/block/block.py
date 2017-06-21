@@ -283,7 +283,6 @@ class Chain:
         while Chain._blockFromHash.has_key(block.pb2.previoushash):
             block=Chain.getBlockFromHash(block.pb2.previoushash)
             result.append(block)
-        result.reverse()
         return result
     
     @staticmethod
