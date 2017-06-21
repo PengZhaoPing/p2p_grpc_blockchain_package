@@ -234,7 +234,7 @@ class Chain:
         
         if Chain._blockFromHash.has_key(block.pb2.blockhash):
             if not Chain._blockFromHeight.has_key(block.pb2.blockhash):
-                Chain._blockFromHeight[key] = block
+                Chain._blockFromHeight[block.pb2.height] = block
             return "HAS_BLOCK"
 
         
