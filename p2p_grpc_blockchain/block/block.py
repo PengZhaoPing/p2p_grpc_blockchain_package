@@ -209,17 +209,13 @@ class Chain:
             start = ((Chain.getHeight())//100-1)*100
             timetotal=0
             if start >= 0:
-                for i in range(start,start+100):
+                for i in xrange(start,start+100):
                     previousTime=Chain.getBlockFromHeight(i).pb2.unixtime
                     nextTime=Chain.getBlockFromHeight(i+1).pb2.unixtime
-                    if float(nextTime) - float(previousTime) >600:
-                        timetotal+=600
-                    # elif nextTime - previousTime <0:
-                    #     timetotal+=0
-                    else:
-                        timetotal += float(nextTime) - float(previousTime)
-                
-                return format(int(int(Chain.getBlockFromHeight(start+100).pb2.difficulty,16)*(Fraction(timetotal)/6000)),'x')
+                    timetotal += float(nextTime) - float(previousTime)
+                proportion=Fraction(timetotal)/6000
+                proportion= Fraction(4) if proportion > Fraction(4) else Fraction(0.25) if proportion < Fraction(0.25) else proportion
+                return ( "%x" % int(int(Chain.getBlockFromHeight(start+100).pb2.difficulty,16)*proportion) )
             
         return "417574686f723a4c757273756e2c20e79ba7e7919ee5b1b1e69599e68e88"
 
